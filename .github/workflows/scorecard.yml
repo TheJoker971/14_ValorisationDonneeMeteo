@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       security-events: write
-      # id-token: write  # uncomment if repo is public (needed for publish_results)
+      id-token: write
       contents: read
       actions: read
 
