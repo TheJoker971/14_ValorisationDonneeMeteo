@@ -16,7 +16,7 @@ jobs:
     runs-on: ubuntu-24.04
     permissions:
       security-events: write
-      id-token: write
+      # id-token: write  # uncomment if repo is public (needed for publish_results)
       contents: read
       actions: read
 
@@ -31,7 +31,8 @@ jobs:
         with:
           results_file: scorecard-results.sarif
           results_format: sarif
-          publish_results: true
+          # publish_results only works on public repos
+          publish_results: ${{ github.event.repository.visibility == 'public' }}
 
       - name: Upload SARIF results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v3
