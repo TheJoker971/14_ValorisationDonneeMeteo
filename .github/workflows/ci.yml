@@ -179,6 +179,7 @@ jobs:
       - name: Backend dependency scan (pip-audit)
         working-directory: backend
         run: |
+          uv run python -m ensurepip --upgrade
           uv run python -m pip install --disable-pip-version-check pip-audit
           uv run pip-audit
 
