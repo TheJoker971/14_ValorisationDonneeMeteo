@@ -1,6 +1,7 @@
 # Valorisation Donnée Météo
 
 [![CI](https://github.com/TheJoker971/14_ValorisationDonneeMeteo/actions/workflows/ci.yml/badge.svg)](https://github.com/TheJoker971/14_ValorisationDonneeMeteo/actions/workflows/ci.yml)
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/TheJoker971/14_ValorisationDonneeMeteo/badge)](https://securityscorecards.dev/viewer/?uri=github.com/TheJoker971/14_ValorisationDonneeMeteo)
 
 Projet Data For Good - Saison 14
 
