@@ -8,7 +8,7 @@ services:
     networks:
       - app_net
       - bd_net
-      
+
   postgres_exporter:
     image: prometheuscommunity/postgres-exporter:latest
     environment:
