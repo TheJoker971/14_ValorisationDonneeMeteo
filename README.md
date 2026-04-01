@@ -1,7 +1,6 @@
 # Valorisation Donnée Météo
 
 [![CI](https://github.com/TheJoker971/14_ValorisationDonneeMeteo/actions/workflows/ci.yml/badge.svg)](https://github.com/TheJoker971/14_ValorisationDonneeMeteo/actions/workflows/ci.yml)
-[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/TheJoker971/14_ValorisationDonneeMeteo/badge)](https://scorecard.dev/viewer/?uri=github.com/TheJoker971/14_ValorisationDonneeMeteo)
 
 Projet Data For Good - Saison 14
 
@@ -18,6 +17,16 @@ Consultez les README de chaque sous-projet :
 
 - [Backend](backend/README.md)
 - [Frontend](frontend/README.md)
+
+## Docker Hardened Images (DHI)
+
+Le projet utilise des images Docker Hardened Images (registry `dhi.io`) pour Python et Node.js.
+
+Avant de builder/lancer avec Docker Compose, connectez-vous :
+
+```bash
+docker login dhi.io
+```
 
 ## Contribuer
 

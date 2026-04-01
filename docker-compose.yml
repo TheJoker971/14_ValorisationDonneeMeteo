@@ -1,4 +1,21 @@
 services:
+  prometheus:
+    image: prom/prometheus:latest
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml:ro
+    ports:
+      - "9090:9090"
+    networks:
+      - app_net
+      - bd_net
+      
+  postgres_exporter:
+    image: prometheuscommunity/postgres-exporter:latest
+    environment:
+      DATA_SOURCE_NAME: "postgresql://infoclimat:infoclimat2026@timescaledb:5432/meteodb?sslmode=disable"
+    networks:
+      - bd_net
+
   timescaledb:
     image: timescale/timescaledb:2.25.0-pg17
     container_name: timescaledb
@@ -31,9 +48,35 @@ services:
     networks:
       - app_net
 
+  nginx_exporter:
+    image: nginx/nginx-prometheus-exporter:latest
+    command:
+      - "-nginx.scrape-uri=http://nginx/nginx_status"
+    depends_on:
+      - nginx
+    ports:
+      - "9113:9113"
+    networks:
+      - app_net
+
+  grafana:
+    image: grafana/grafana:latest
+    depends_on:
+      - prometheus
+    ports:
+      - "3002:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/etc/grafana/dashboards:ro
+    networks:
+      - app_net
+
   backend:
     build:
       context: ./backend
+    ports:
+      - "8000:8000"
     env_file:
       - ./.env
     depends_on:
@@ -53,6 +96,8 @@ services:
 
 volumes:
   timescaledb-data:
+    driver: local
+  grafana-data:
     driver: local
 networks:
   app_net:
