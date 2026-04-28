@@ -180,7 +180,8 @@ jobs:
 
       - name: Backend dependency scan (pip-audit)
         working-directory: backend
-        run: uv run pip-audit
+        # CVE-2026-3219 affecte pip lui-même, aucune version corrective publiée à ce jour
+        run: uv run pip-audit --ignore-vuln CVE-2026-3219
 
       - uses: actions/setup-node@v4
         with:
